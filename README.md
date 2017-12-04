@@ -14,4 +14,4 @@ Study time:
 | Week 1 | 18              |
 | Week 2 | 14              |
 | Week 3 | 13              |
-| Week 4 | 6               |
+| Week 4 | 18              |
