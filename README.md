@@ -15,3 +15,4 @@ Study time:
 | Week 2 | 14              |
 | Week 3 | 13              |
 | Week 4 | 18              |
+| Week 5 | 12              |
