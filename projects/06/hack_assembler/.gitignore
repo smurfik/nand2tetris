@@ -1,0 +1,10 @@
+/.bundle/
+/Gemfile.lock
+/tmp/
+/lib/Add.asm
+/lib/Max.asm
+/lib/MaxL.asm
+/lib/Rect.asm
+/lib/RectL.asm
+/lib/Pong.asm
+/lib/PongL.asm
