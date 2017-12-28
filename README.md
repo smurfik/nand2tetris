@@ -9,6 +9,8 @@ The course consists of a series of 14 learning modules. Each module consists of 
 ___
 Study time:
 
+*Part 1*
+
 | Date   | Pomodoros count |
 | ------ |:---------------:|
 | Week 1 | 18              |
@@ -16,3 +18,10 @@ Study time:
 | Week 3 | 13              |
 | Week 4 | 18              |
 | Week 5 | 12              |
+| Week 6 | 22              |
+
+*Part 2*
+
+| Date   | Pomodoros count |
+| ------ |:---------------:|
+| Week 1 | 00              |
