@@ -1,0 +1,2 @@
+class CodeWriter
+end
