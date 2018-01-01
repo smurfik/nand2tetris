@@ -3,11 +3,11 @@ require_relative "parser"
 module VmTranslator
 
   def self.create_asm_file
-    input = ARGF.read
-    puts input.inspect
-    # parser = Parser.new(file_name)
-
+    file_name = ARGV[0]
+    file_contents = ARGF.read
+    parser = Parser.new(file_contents)
+    puts parser.lines.inspect
   end
 end
 
-puts VmTranslator.create_asm_file
+VmTranslator.create_asm_file
