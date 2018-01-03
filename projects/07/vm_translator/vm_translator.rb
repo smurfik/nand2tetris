@@ -6,7 +6,7 @@ module VmTranslator
   def self.create_asm_file
     file_name = ARGV[0]
     file = file_name.split(".")[0]
-    CodeWriter.new(file).create_asm_file
+    code_writer = CodeWriter.new(file)
     file_contents = ARGF.read
     parser = Parser.new(file_contents)
     while parser.has_more_commands?
@@ -15,7 +15,9 @@ module VmTranslator
       when Parser::C_ARITHMETIC
         puts "arithmetic"
       when Parser::C_PUSH
-        puts "push"
+        code_writer.write_push_pop(parser.command_type,
+                                   parser.arg1,
+                                   parser.arg2)
       end
     end
   end
