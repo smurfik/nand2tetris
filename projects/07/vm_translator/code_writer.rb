@@ -4,6 +4,7 @@ class CodeWriter
     @file_name = set_file_name(file_name)
     @asm_file = File.open(@file_name, "w")
     @asm_file.close()
+    @counter = 0
   end
 
   def set_file_name(file_name)
@@ -21,6 +22,36 @@ class CodeWriter
         f << "D=M\r\n"
         f << "A=A-1\r\n"
         f << "M=M#{operand(command)}D\r\n"
+      end
+    when 'neg', 'not'
+      open(@asm_file, "a") do |f|
+        f << "// " + "#{command}" + "\r\n"
+        f << "@SP\r\n"
+        f << "A=M-1\r\n"
+        f << "M=#{operand(command)}M\r\n"
+      end
+    when'eq', 'gt', 'lt'
+      true_label, end_label = 2.times.map { generate_label }
+      open(@asm_file, "a") do |f|
+        f << "// " + "#{command}" + "\r\n"
+        f << "@SP\r\n"
+        f << "MD=M-1\r\n"
+        f << "A=M\r\n"
+        f << "D=M\r\n"
+        f << "A=A-1\r\n"
+        f << "D=M-D\r\n"
+        f << "@#{true_label}\r\n"
+        f << "D;J#{command.upcase}\r\n"
+        f << "@SP\r\n"
+        f << "A=M-1\r\n"
+        f << "M=0\r\n"
+        f << "@#{end_label}\r\n"
+        f << "0;JMP\r\n"
+        f << "(#{true_label})\r\n"
+        f << "@SP\r\n"
+        f << "A=M-1\r\n"
+        f << "M=-1\r\n"
+        f << "(#{end_label})\r\n"
       end
     end
   end
@@ -56,6 +87,8 @@ class CodeWriter
     end
   end
 
+  private
+
   def operand(command)
     {
       'add' => '+',
@@ -65,5 +98,10 @@ class CodeWriter
       'neg' => '-',
       'not' => '!'
     }.fetch(command)
+  end
+
+  def generate_label(text="LABEL")
+    @counter += 1
+    "#{text}.#{@counter}"
   end
 end
