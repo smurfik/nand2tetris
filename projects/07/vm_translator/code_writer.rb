@@ -11,6 +11,18 @@ class CodeWriter
   end
 
   def write_arithmetic(command)
+    case command
+    when 'add', 'sub', 'and', 'or'
+      open(@asm_file, "a") do |f|
+        f << "// " + "#{command}" + "\r\n"
+        f << "@SP\r\n"
+        f << "MD=M-1\r\n"
+        f << "A=M\r\n"
+        f << "D=M\r\n"
+        f << "A=A-1\r\n"
+        f << "M=M#{operand(command)}D\r\n"
+      end
+    end
   end
 
   def write_push_pop(command, segment, i)
@@ -38,7 +50,20 @@ class CodeWriter
         f << "@SP\r\n"
         f << "A=M\r\n"
         f << "M=D\r\n"
+        f << "@SP\r\n"
+        f << "M=M+1\r\n"
       end
     end
+  end
+
+  def operand(command)
+    {
+      'add' => '+',
+      'sub' => '-',
+      'and' => '&',
+      'or' => '|',
+      'neg' => '-',
+      'not' => '!'
+    }.fetch(command)
   end
 end

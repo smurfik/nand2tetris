@@ -13,7 +13,7 @@ module VmTranslator
       parser.advance
       case parser.command_type
       when Parser::C_ARITHMETIC
-        puts "arithmetic"
+        code_writer.write_arithmetic(parser.arg1)
       when Parser::C_PUSH
         code_writer.write_push_pop(parser.command_type,
                                    parser.arg1,
