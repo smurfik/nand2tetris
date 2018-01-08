@@ -61,13 +61,35 @@ class CodeWriter
     when Parser::C_PUSH
       write_push(segment, i)
     when Parser::C_POP
-      # write pop command into the file
+      write_pop(segment, i)
     end
   end
 
-  def create_asm_file
+  private
+
+  def write_pop(segment, i)
     open(@asm_file, "a") do |f|
-      f << 'I am appended string'
+      f << "// " + 'pop ' + segment + ' ' + i.to_s + "\r\n"
+
+      f << "@#{symbol_for_segment(segment, i)}\r\n"
+      if ["temp", "pointer", "static"].include?(segment)
+        f << "D=A\r\n"
+      else
+        f << "D=M\r\n"
+        if !i.zero?
+          f << "@#{i}\r\n"
+          f << "D=A+D\r\n"
+        end
+      end
+      f << "R13\r\n"
+      f << "M=D\r\n"
+
+      f << "SP\r\n"
+      f << "AM=M-1\r\n"
+      f << "D=M\r\n"
+      f << "@R13\r\n"
+      f << "A=M\r\n"
+      f << "M=D\r\n"
     end
   end
 
@@ -84,10 +106,34 @@ class CodeWriter
         f << "@SP\r\n"
         f << "M=M+1\r\n"
       end
+    else
+      open(@asm_file, "a") do |f|
+        f << "// " + 'push ' + segment + ' ' + i.to_s + "\r\n"
+
+        f << "@#{symbol_for_segment(segment, i)}\r\n"
+        if ["temp", "pointer", "static"].include?(segment)
+          f << "D=A\r\n"
+        else
+          f << "D=M\r\n"
+          if !i.zero?
+            f << "@#{i}\r\n"
+            f << "D=A+D\r\n"
+          end
+        end
+        f << "R13\r\n"
+        f << "M=D\r\n"
+
+        f << "R13\r\n"
+        f << "A=M\r\n"
+        f << "D=M\r\n"
+        f << "@SP\r\n"
+        f << "A=M\r\n"
+        f << "M=D\r\n"
+        f << "@SP\r\n"
+        f << "M=M+1\r\n"
+      end
     end
   end
-
-  private
 
   def operand(command)
     {
@@ -98,6 +144,28 @@ class CodeWriter
       'neg' => '-',
       'not' => '!'
     }.fetch(command)
+  end
+
+  def symbol_for_segment(segment, offset)
+    case segment
+    when 'temp'
+      5 + offset
+    when 'pointer'
+      3 + offset
+    when 'static'
+      "#{@file_name}.#{offset}"
+    else
+      base_address(segment)
+    end
+  end
+
+  def base_address(segment)
+    {
+      'local' => 'LCL',
+      'argument' => 'ARG',
+      'this' => 'THIS',
+      'that' => 'THAT'
+    }.fetch(segment)
   end
 
   def generate_label(text="LABEL")

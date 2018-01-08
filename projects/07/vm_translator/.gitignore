@@ -2,3 +2,9 @@ SimpleAdd.vm
 SimpleAdd.asm
 StackTest.vm
 StackTest.asm
+BasicTest.vm
+BasicTest.asm
+PointerTest.vm
+PointerTest.asm
+StaticTest.vm
+StaticTest.asm

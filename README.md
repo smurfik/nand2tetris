@@ -24,4 +24,4 @@ Study time:
 
 | Date   | Pomodoros count |
 | ------ |:---------------:|
-| Week 1 | 00              |
+| Week 1 | 27              |
