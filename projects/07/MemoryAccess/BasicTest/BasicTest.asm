@@ -9,9 +9,9 @@ M=M+1
 // pop local 0
 @LCL
 D=M
-R13
+@R13
 M=D
-SP
+@SP
 AM=M-1
 D=M
 @R13
@@ -38,9 +38,9 @@ M=M+1
 D=M
 @2
 D=A+D
-R13
+@R13
 M=D
-SP
+@SP
 AM=M-1
 D=M
 @R13
@@ -51,9 +51,9 @@ M=D
 D=M
 @1
 D=A+D
-R13
+@R13
 M=D
-SP
+@SP
 AM=M-1
 D=M
 @R13
@@ -72,9 +72,9 @@ M=M+1
 D=M
 @6
 D=A+D
-R13
+@R13
 M=D
-SP
+@SP
 AM=M-1
 D=M
 @R13
@@ -101,9 +101,9 @@ M=M+1
 D=M
 @5
 D=A+D
-R13
+@R13
 M=D
-SP
+@SP
 AM=M-1
 D=M
 @R13
@@ -114,9 +114,9 @@ M=D
 D=M
 @2
 D=A+D
-R13
+@R13
 M=D
-SP
+@SP
 AM=M-1
 D=M
 @R13
@@ -133,9 +133,9 @@ M=M+1
 // pop temp 6
 @11
 D=A
-R13
+@R13
 M=D
-SP
+@SP
 AM=M-1
 D=M
 @R13
@@ -144,9 +144,9 @@ M=D
 // push local 0
 @LCL
 D=M
-R13
+@R13
 M=D
-R13
+@R13
 A=M
 D=M
 @SP
@@ -159,9 +159,9 @@ M=M+1
 D=M
 @5
 D=A+D
-R13
+@R13
 M=D
-R13
+@R13
 A=M
 D=M
 @SP
@@ -181,9 +181,9 @@ M=M+D
 D=M
 @1
 D=A+D
-R13
+@R13
 M=D
-R13
+@R13
 A=M
 D=M
 @SP
@@ -203,9 +203,9 @@ M=M-D
 D=M
 @6
 D=A+D
-R13
+@R13
 M=D
-R13
+@R13
 A=M
 D=M
 @SP
@@ -218,9 +218,9 @@ M=M+1
 D=M
 @6
 D=A+D
-R13
+@R13
 M=D
-R13
+@R13
 A=M
 D=M
 @SP
@@ -245,9 +245,9 @@ M=M-D
 // push temp 6
 @11
 D=A
-R13
+@R13
 M=D
-R13
+@R13
 A=M
 D=M
 @SP
