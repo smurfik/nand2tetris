@@ -25,9 +25,9 @@ M=M+1
 // pop static 8
 @StaticTest.asm.8
 D=A
-R13
+@R13
 M=D
-SP
+@SP
 AM=M-1
 D=M
 @R13
@@ -36,9 +36,9 @@ M=D
 // pop static 3
 @StaticTest.asm.3
 D=A
-R13
+@R13
 M=D
-SP
+@SP
 AM=M-1
 D=M
 @R13
@@ -47,9 +47,9 @@ M=D
 // pop static 1
 @StaticTest.asm.1
 D=A
-R13
+@R13
 M=D
-SP
+@SP
 AM=M-1
 D=M
 @R13
@@ -58,9 +58,9 @@ M=D
 // push static 3
 @StaticTest.asm.3
 D=A
-R13
+@R13
 M=D
-R13
+@R13
 A=M
 D=M
 @SP
@@ -71,9 +71,9 @@ M=M+1
 // push static 1
 @StaticTest.asm.1
 D=A
-R13
+@R13
 M=D
-R13
+@R13
 A=M
 D=M
 @SP
@@ -91,9 +91,9 @@ M=M-D
 // push static 8
 @StaticTest.asm.8
 D=A
-R13
+@R13
 M=D
-R13
+@R13
 A=M
 D=M
 @SP

@@ -81,10 +81,10 @@ class CodeWriter
           f << "D=A+D\r\n"
         end
       end
-      f << "R13\r\n"
+      f << "@R13\r\n"
       f << "M=D\r\n"
 
-      f << "SP\r\n"
+      f << "@SP\r\n"
       f << "AM=M-1\r\n"
       f << "D=M\r\n"
       f << "@R13\r\n"
@@ -120,10 +120,10 @@ class CodeWriter
             f << "D=A+D\r\n"
           end
         end
-        f << "R13\r\n"
+        f << "@R13\r\n"
         f << "M=D\r\n"
 
-        f << "R13\r\n"
+        f << "@R13\r\n"
         f << "A=M\r\n"
         f << "D=M\r\n"
         f << "@SP\r\n"
